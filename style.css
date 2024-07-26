@@ -82,7 +82,7 @@ nav a:hover {
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjust column width for mobile */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust column width for mobile */
   gap: 1rem; /* Adjust gap for mobile */
 }
 
@@ -96,7 +96,7 @@ nav a:hover {
 
 .product img {
   width: 100%;
-  height: 400px; /* Adjust image height for mobile */
+  height: 300px; /* Adjust image height for mobile */
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 1rem;
