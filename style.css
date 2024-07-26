@@ -81,6 +81,7 @@ nav a:hover {
 }
 
 .product-grid {
+  width: 250px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust column width for mobile */
   gap: 1rem; /* Adjust gap for mobile */
