@@ -41,6 +41,8 @@ nav a {
   font-weight: 500;
   transition: color 0.2s ease;
   color: #F58220; /* Orange color */
+  padding: 0.75rem 1.25rem; /* Add padding to buttons */
+  border-radius: 20px; /* Add rounded corners */
 }
 
 nav a:hover {
@@ -113,7 +115,7 @@ nav a:hover {
 .product a {
   display: inline-block;
   padding: 0.5rem 1rem; /* Adjust button padding for mobile */
-  border-radius: 5px;
+  border-radius: 20px; /* Rounded corners for buttons */
   text-decoration: none;
   transition: background-color 0.2s ease;
   background-color: #F58220; /* Orange button */
@@ -165,7 +167,7 @@ nav a:hover {
   background-color: #F58220; /* Orange button */
   color: #fff;
   padding: 0.5rem 1rem; /* Adjust button padding for mobile */
-  border-radius: 5px;
+  border-radius: 20px; /* Rounded corners for buttons */
   text-decoration: none;
   transition: background-color 0.2s ease;
 }
@@ -374,7 +376,47 @@ footer {
 #hamburger {
   display: none; /* Hide by default */
 }
+.text-orange-500 {
+  color: #F58220; /* Or any other orange shade you prefer */
+}
+.post {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease; 
+}
 
+.post:hover {
+  transform: translateY(-5px); 
+}
+
+.post img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem; 
+}
+.blog-card {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease; 
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+}
+
+.blog-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
 #hamburger span {
   display: block;
   width: 30px;
