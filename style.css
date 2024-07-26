@@ -82,7 +82,7 @@ nav a:hover {
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjust column width for mobile */
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); /* Adjust column width for mobile */
   gap: 1rem; /* Adjust gap for mobile */
 }
 
