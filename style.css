@@ -49,7 +49,7 @@ nav a:hover {
   color: #007bff; /* Blue color on hover */
 }
 #hero img {
-  min-height: 100vh; /* Minimum height: 100% of the viewport height */
+  min-height: 300vh; /* Minimum height: 100% of the viewport height */
   object-fit: cover; /* Cover the entire area */
   width: 100%;
   z-index: -1; /* Make sure the image is behind content */
@@ -83,7 +83,7 @@ nav a:hover {
 .product-grid {
   width: 250px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust column width for mobile */
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Adjust column width for mobile */
   gap: 1rem; /* Adjust gap for mobile */
 }
 
