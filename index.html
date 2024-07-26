@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7974930429316967"
+     crossorigin="anonymous"></script>
   <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 <link rel="icon" href="favicon.png" type="image/x-icon">
     <meta charset="UTF-8">
@@ -17,8 +19,13 @@
         <div class="logo">
             <img src="logo.png" alt="Your Logo">
         </div>
-        <h1>My Affiliate Marketing Website</h1>
-        <nav>
+        <button id="hamburger" class="md:hidden">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+       
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="aboutus.html">About</a></li>
@@ -28,12 +35,12 @@
     </header>
 
     <main>
-        <section id="hero">
-            <h2>Welcome to My Site!</h2>
-            <p>Discover the best products and services for your needs. I've handpicked these recommendations based on my experience and research. Click the links below to learn more!</p>
-        </section>
-
        
+
+        <section id="hero" class="relative flex items-center justify-center bg-orange-500  h-screen"> 
+          <div class="container px-4">
+          </div>
+      </section>
 
         <section id="featured-products">
           <h2>Featured Products</h2>
@@ -165,6 +172,7 @@ db.ref('blog_posts').on('value', (snapshot) => {
     // You might want to display a message to the user here
   }
 });
+// Get the hamburger menu and mobile navigation elements
 // Get the hamburger menu and mobile navigation elements
 const hamburger = document.getElementById('hamburger');
 const mobileNav = document.getElementById('mobile-nav');
