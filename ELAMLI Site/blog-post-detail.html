@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Post Detail</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script> 
+</head>
+<body>
+  <!-- ... (You can add your header here if you want to include it on all pages) ... -->
+  <header>
+    <div class="logo">
+        <img src="logo.png" alt="Your Logo">
+    </div>
+    <h1>My Affiliate Marketing Website</h1>
+    <nav>
+        <ul>
+            <li><a href="main.html">Home</a></li>
+            <li><a href="aboutus.html">About</a></li>
+            <li><a href="contactus.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="blog">
+  <h2>Latest Blog Posts</h2>
+  <main>
+    <section id="blog-detail">
+      <div id="postContent"></div>
+    </section>
+  </main>
+  <div class="blog-posts" id="blogPosts">
+      <div id="blog-loading">Loading Blog Posts...</div> 
+  </div>
+</section>
+  <!-- ... (You can add your footer here if you want to include it on all pages) ... -->
+
+  <script>
+    // Firebase Configuration
+    const firebaseConfig = {
+  apiKey: "AIzaSyC3ENJExu01i7yODhQQO5k6-BuZ13737T4",
+  authDomain: "elamli-shop.firebaseapp.com",
+  databaseURL: "https://elamli-shop-default-rtdb.firebaseio.com",
+  projectId: "elamli-shop",
+  storageBucket: "elamli-shop.appspot.com",
+  messagingSenderId: "740777134694",
+  appId: "1:740777134694:web:6064048d820d18540afba7",
+  measurementId: "G-MNT2CS1QSD"
+};
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('postId');
+
+    if (postId) {
+      db.ref(`blog_posts/${postId}`).on('value', (snapshot) => {
+        const postData = snapshot.val();
+
+        if (postData) {
+          const postContent = document.getElementById('postContent');
+          postContent.innerHTML = `
+            <h2>${postData.title}</h2>
+            <img src="${postData.image}" alt="${postData.title}">
+            <p>${postData.content}</p>
+          `;
+        } else {
+          console.error('Blog post not found.');
+        }
+      });
+    } else {
+      console.error('postId is missing from the URL.');
+    }
+  </script>
+</body>
+</html>

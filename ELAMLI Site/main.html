@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELAMLI SHOP - Hot products in 2024 is here!</title>
+    <meta name="description" content="Discover the best products and services for your needs.  Get recommendations based on research and experience. Shop now and learn more about Home and finance, health,travel, e-comme." />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script> 
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Your Logo">
+        </div>
+        <h1>My Affiliate Marketing Website</h1>
+        <nav>
+            <ul>
+                <li><a href="main.html">Home</a></li>
+                <li><a href="aboutus.html">About</a></li>
+                <li><a href="contactus.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <h2>Welcome to My Site!</h2>
+            <p>Discover the best products and services for your needs. I've handpicked these recommendations based on my experience and research. Click the links below to learn more!</p>
+        </section>
+
+        <a href='https://s.click.aliexpress.com/e/_Dn1pigX?bz=300*250' target='_parent'><img width='725' height='90' src='https://ae01.alicdn.com/kf/S3619e57974f148d087c950fe497cdf55q/300x250.jpg' /></a>
+
+        <section id="featured-products">
+          <h2>Featured Products</h2>
+          <div class="product-grid" id="productGrid">
+              <div id="product-loading">Loading Products...</div> 
+          </div>
+      </section>
+
+      <section id="blog">
+          <h2>Latest Blog Posts</h2>
+          <div class="blog-posts" id="blogPosts">
+              <div id="blog-loading">Loading Blog Posts...</div> 
+          </div>
+      </section>
+
+        
+
+        <script>
+        // Firebase Configuration (Replace placeholders with your values)
+        const firebaseConfig = {
+  apiKey: "AIzaSyC3ENJExu01i7yODhQQO5k6-BuZ13737T4",
+  authDomain: "elamli-shop.firebaseapp.com",
+  databaseURL: "https://elamli-shop-default-rtdb.firebaseio.com",
+  projectId: "elamli-shop",
+  storageBucket: "elamli-shop.appspot.com",
+  messagingSenderId: "740777134694",
+  appId: "1:740777134694:web:6064048d820d18540afba7",
+  measurementId: "G-MNT2CS1QSD"
+};
+
+          // Initialize Firebase
+          const app = firebase.initializeApp(firebaseConfig);
+          const db = firebase.database();
+
+          // Function to create a product element
+          function createProductElement(productData) {
+            const productElement = document.createElement('div');
+            productElement.classList.add('product');
+        
+            const imgElement = document.createElement('img');
+            imgElement.src = productData.image; // Make sure the image path is correct
+            imgElement.alt = productData.name;
+        
+            const titleElement = document.createElement('h3');
+            titleElement.textContent = productData.name;
+        
+            const descriptionElement = document.createElement('p');
+            descriptionElement.textContent = productData.description;
+        
+            const linkElement = document.createElement('a');
+            linkElement.href = productData.affiliate_link;
+            linkElement.target = '_blank';
+            linkElement.textContent = 'Learn More';
+        
+            productElement.appendChild(imgElement);
+            productElement.appendChild(titleElement);
+            productElement.appendChild(descriptionElement);
+            productElement.appendChild(linkElement);
+        
+            return productElement;
+          }
+
+          // Fetch products from the database and add them to the HTML
+          db.ref('products').on('value', (snapshot) => {
+            const products = snapshot.val(); 
+
+            const productGrid = document.getElementById('productGrid');
+            productGrid.innerHTML = '';
+
+            if (products) { 
+              // If there are products in the database
+              for (const productId in products) {
+                if (products.hasOwnProperty(productId)) {
+                  const productData = products[productId];
+                  productGrid.appendChild(createProductElement(productData));
+                }
+              }
+            } else {
+              // Handle the case where there's no data in the products node
+              console.log('No products found in the database.');
+              // You might want to display a message to the user here
+            }
+          });
+// ... (Your Firebase setup)
+function createBlogPostElement(postData) {
+  const postElement = document.createElement('div');
+  postElement.classList.add('post');
+
+  const titleElement = document.createElement('h3');
+  titleElement.textContent = postData.title;
+
+  const summaryElement = document.createElement('p');
+  summaryElement.textContent = postData.summary;
+
+  const imgElement = document.createElement('img');
+  imgElement.src = postData.image; // Make sure the image path is correct
+  imgElement.alt = postData.title;
+
+  const linkElement = document.createElement('a');
+  linkElement.href = "blog-post-detail.html?postId=" + postData.postId; // Add a link to blog post detail page
+  linkElement.textContent = 'Read More';
+
+  postElement.appendChild(imgElement);
+  postElement.appendChild(titleElement);
+  postElement.appendChild(summaryElement);
+  postElement.appendChild(linkElement);
+
+  return postElement;
+}
+
+db.ref('blog_posts').on('value', (snapshot) => {
+  const posts = snapshot.val(); 
+
+  const blogPosts = document.getElementById('blogPosts');
+  blogPosts.innerHTML = ''; // Clear previous posts
+
+  if (posts) { 
+    // If there are blog posts in the database
+    for (const postId in posts) {
+      if (posts.hasOwnProperty(postId)) {
+        const postData = posts[postId];
+        postData.postId = postId; // Add postId to postData
+        blogPosts.appendChild(createBlogPostElement(postData));
+      }
+    }
+  } else {
+    // No blog posts found
+    console.log('No blog posts found in the database.');
+    // You might want to display a message to the user here
+  }
+});
+// Get the hamburger menu and mobile navigation elements
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobile-nav');
+
+// Event listener for the hamburger menu
+hamburger.addEventListener('click', () => {
+  // Toggle the open class on the hamburger and mobile navigation
+  hamburger.classList.toggle('open');
+  mobileNav.classList.toggle('show');
+});
+// ... (rest of your code)
+          // ... (Similar code for blog posts)
+        </script>
+    </main>
+
+    <footer>
+        <p>© 2023 ELAMLI. All rights reserved.</p>
+    </footer>
+</body>
+</html>

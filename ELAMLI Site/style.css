@@ -1,0 +1,404 @@
+/* style.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* General Styling */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f8f8f8;
+}
+
+/* Header */
+header {
+    background-color: #fff; 
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+  height: 40px; /* Adjust logo size as needed */
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column; /* Stack items vertically for mobile */
+  align-items: flex-start; /* Align items to the left */
+}
+
+nav li {
+  margin-bottom: 10px; /* Space between menu items */
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  color: #F58220; 
+}
+
+nav a:hover {
+  color: #007bff;
+}
+
+/* Hero Section */
+#hero {
+  background-image: url('hero-background.jpg'); /* Replace with your image */
+  background-size: cover;
+  background-position: center;
+  padding: 60px 0;
+  color: #fff;
+  text-align: center;
+  background-color: #F58220;
+}
+
+#hero h2 {
+  font-size: 2rem; /* Adjust heading size for mobile */
+  margin-bottom: 1rem;
+}
+
+#hero p {
+  color: #fff; /* White text on orange background */
+}
+/* Product Section */
+#featured-products {
+  padding: 20px; /* Adjust padding for mobile */
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjust column width for mobile */
+  gap: 10px; /* Adjust gap for mobile */
+}
+
+.product {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.product img {
+  width: 100%;
+  height: 150px; /* Adjust image height for mobile */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.product h3 {
+  font-size: 1rem; /* Adjust heading size for mobile */
+  margin-bottom: 5px;
+}
+
+.product .price {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.product a {
+  display: inline-block;
+  
+  padding: 8px 15px; /* Adjust button padding for mobile */
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+  background-color: #F58220; /* Orange button */
+  color: #fff; 
+}
+
+.product a:hover {
+  background-color: #0056b3;
+}
+
+/* Blog Section */
+#blog {
+  padding: 20px; /* Adjust padding for mobile */
+}
+
+.blog-posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust column width for mobile */
+  gap: 10px; /* Adjust gap for mobile */
+}
+
+.post {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.post img {
+  width: 100%;
+  height: 150px; /* Adjust image height for mobile */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.post h3 {
+  font-size: 1rem; /* Adjust heading size for mobile */
+  margin-bottom: 5px;
+}
+
+.post p {
+  margin-bottom: 10px;
+}
+
+.post a {
+  display: inline-block;
+  background-color: #F58220; /* Orange button */
+  color: #fff;
+  padding: 8px 15px; /* Adjust button padding for mobile */
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.post a:hover {
+  background-color: #0056b3;
+}
+
+/* Footer */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 15px; /* Adjust padding for mobile */
+  text-align: center;
+  
+}
+
+/* Media Queries for Mobile Devices */
+@media (max-width: 768px) {
+  /* Adjust layout and font sizes for mobile */
+  nav ul {
+    display: none; /* Hide navigation on small screens */
+  }
+
+  /* Show a hamburger menu icon for mobile navigation */
+  #hamburger {
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  /* Mobile Navigation */
+  #mobile-nav {
+    position: absolute;
+    top: 60px; /* Adjust position as needed */
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    display: none; /* Hide by default */
+  }
+
+  #mobile-nav ul {
+    flex-direction: column; /* Stack menu items vertically */
+  }
+
+  #mobile-nav li {
+    margin-bottom: 15px;
+  }
+
+  /* Hero Section */
+  #hero h2 {
+    font-size: 1.8rem;
+  }
+
+  /* Product Section */
+  .product-grid {
+    grid-template-columns: 1fr; /* Single column layout for mobile */
+  }
+
+  /* Blog Section */
+  .blog-posts {
+    grid-template-columns: 1fr; /* Single column layout for mobile */
+  }
+}
+
+
+#product-loading,
+#blog-loading {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 20px;
+  /* ... (Your existing styles) */
+}
+
+/* Loading Spinner Styles (Using a CSS spinner) */
+.spinner {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 4px solid #f58220; /* Orange color */
+  border-radius: 50%;
+  border-color: #f58220 transparent #f58220 transparent;
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* style.css */
+/* ... (Your existing styles) */
+
+#banner-showcase {
+  margin-bottom: 40px;
+}
+
+.banner-slider {
+  position: relative; /* To position navigation buttons */
+}
+
+.banner {
+  display: none; /* Hide all banners initially */
+  position: relative; /* To position banner content */
+  overflow: hidden; /* Hide overflow for banner images */
+}
+
+.banner img {
+  width: 100%;
+  height: 300px; /* Adjust banner height as needed */
+  object-fit: cover;
+}
+
+.banner-content {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  color: #fff;
+  padding: 15px;
+}
+
+.banner-content h2 {
+  margin-bottom: 5px;
+}
+
+.banner-nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.banner-nav button {
+  background-color: #fff;
+  border: none;
+  padding: 10px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.banner-nav button:hover {
+  background-color: #ddd;
+}
+#blog-detail {
+  padding: 40px; 
+}
+
+#blog-detail h2 {
+  font-family: 'Playfair Display', serif; /* Serif font for heading */
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+#blog-detail p {
+  font-family: 'Roboto', sans-serif; /* Sans-serif font for body text */
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 15px; 
+}
+
+#blog-detail img {
+  /* ... (Your existing image styles) ... */
+  margin-bottom: 20px;
+}
+
+#blog-detail blockquote {
+  background-color: #f5f5f5; /* Light background for quotes */
+  border-left: 5px solid #f58220; /* Orange border */
+  padding: 15px;
+  margin: 20px 0;
+  font-style: italic;
+}
+
+#blog-detail ul,
+#blog-detail ol {
+  margin-left: 30px;
+}
+
+#blog-detail li {
+  margin-bottom: 10px;
+}/* style.css */
+/* ... (your existing styles) ... */
+
+.blog-card {
+  background-color: #fff; /* White background for card */
+  padding: 20px;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  transition: transform 0.2s ease; /* Smooth hover transition */
+}
+
+.blog-card:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+}
+
+.blog-card img {
+  width: 100%;
+  height: 200px; /* Adjust image height as needed */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.blog-card h3 {
+  font-size: 1.2rem; /* Adjust heading size as needed */
+  margin-bottom: 5px;
+}
+
+.blog-card p {
+  margin-bottom: 10px;
+}
+
+.blog-card a {
+  /* ... (Your existing button styles) ... */
+}
+/* Styles for the hamburger menu */
+#hamburger {
+  display: none; /* Hide by default */
+}
+
+#hamburger span {
+  display: block;
+  width: 30px;
+  height: 4px;
+  background-color: #333;
+  margin: 5px 0;
+  transition: all 0.3s ease;
+}
+
+/* Styles for the hamburger menu when open */
+#hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+#hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+#hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
