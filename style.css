@@ -82,7 +82,7 @@ nav a:hover {
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjust column width for mobile */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust column width for mobile */
   gap: 1rem; /* Adjust gap for mobile */
 }
 
@@ -92,11 +92,15 @@ nav a:hover {
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
+  /* Match width to the image */
+  width: fit-content;
 }
 
 .product img {
-  width: 100%;
-  height: 150px; /* Adjust image height for mobile */
+  width: 250px; /* Ensure width is at least 250px */
+  max-width: 350px; /* Maximum width */
+  height: 250px; /* Ensure height is at least 250px */
+  max-height: 350px; /* Maximum height */
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 1rem;
@@ -475,4 +479,23 @@ footer {
   .blog-posts {
     grid-template-columns: 1fr; /* Single column layout for mobile */
   }
+}
+/* Ensure product images are between 250px and 350px */
+.product img {
+  width: 250px; /* Minimum width */
+  max-width: 350px; /* Maximum width */
+  height: 250px; /* Minimum height */
+  max-height: 350px; /* Maximum height */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+.product {
+  background-color: #fff;
+  padding: 1rem; /* Use rem for better responsiveness */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  /* Match width to the image */
+  width: fit-content;
 }
