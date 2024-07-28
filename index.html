@@ -67,71 +67,79 @@
         
 
         <script>
-        // Firebase Configuration (Replace placeholders with your values)
-        const firebaseConfig = {
-  apiKey: "AIzaSyC3ENJExu01i7yODhQQO5k6-BuZ13737T4",
-  authDomain: "elamli-shop.firebaseapp.com",
-  databaseURL: "https://elamli-shop-default-rtdb.firebaseio.com",
-  projectId: "elamli-shop",
-  storageBucket: "elamli-shop.appspot.com",
-  messagingSenderId: "740777134694",
-  appId: "1:740777134694:web:6064048d820d18540afba7",
-  measurementId: "G-MNT2CS1QSD"
-};
 
-          // Initialize Firebase
-          const app = firebase.initializeApp(firebaseConfig);
-          const db = firebase.database();
+         const firebaseConfig = {
+                // Replace these placeholders with your Firebase project settings
+                apiKey: "AIzaSyC3ENJExu01i7yODhQQO5k6-BuZ13737T4",
+                authDomain: "elamli-shop.firebaseapp.com",
+                databaseURL: "https://elamli-shop-default-rtdb.firebaseio.com",
+                projectId: "elamli-shop",
+                storageBucket: "elamli-shop.appspot.com",
+                messagingSenderId: "740777134694",
+                appId: "1:740777134694:web:6064048d820d18540afba7",
+                measurementId: "G-MNT2CS1QSD"
+            };
 
-          // Function to create a product element
-          function createProductElement(productData) {
-            const productElement = document.createElement('div');
-            productElement.classList.add('product');
-        
-            const imgElement = document.createElement('img');
-            imgElement.src = productData.image; // Make sure the image path is correct
-            imgElement.alt = productData.name;
-        
-            const titleElement = document.createElement('h3');
-            titleElement.textContent = productData.name;
-        
-            const descriptionElement = document.createElement('p');
-            descriptionElement.textContent = productData.description;
-        
-            const linkElement = document.createElement('a');
-            linkElement.href = productData.affiliate_link;
-            linkElement.target = '_blank';
-            linkElement.textContent = 'Buy Now!';
-        
-            productElement.appendChild(imgElement);
-            productElement.appendChild(titleElement);
-            productElement.appendChild(descriptionElement);
-            productElement.appendChild(linkElement);
-        
-            return productElement;
-          }
+            // Initialize Firebase
+            const app = firebase.initializeApp(firebaseConfig);
+            const db = firebase.database();
 
-          // Fetch products from the database and add them to the HTML
-          db.ref('products').on('value', (snapshot) => {
-            const products = snapshot.val(); 
+            // Function to create a product element 
+            function createProductElement(productData) {
+                const productElement = document.createElement('div');
+                productElement.classList.add('product');
+                productElement.id = `product-${productData.productId}`;
 
-            const productGrid = document.getElementById('productGrid');
-            productGrid.innerHTML = '';
+                const imgElement = document.createElement('img');
+                imgElement.src = productData.image; 
+                imgElement.alt = productData.name;
 
-            if (products) { 
-              // If there are products in the database
-              for (const productId in products) {
-                if (products.hasOwnProperty(productId)) {
-                  const productData = products[productId];
-                  productGrid.appendChild(createProductElement(productData));
-                }
-              }
-            } else {
-              // Handle the case where there's no data in the products node
-              console.log('No products found in the database.');
-              // You might want to display a message to the user here
+                const titleElement = document.createElement('h3');
+                titleElement.textContent = productData.name;
+
+                const descriptionElement = document.createElement('p');
+                descriptionElement.textContent = productData.description;
+
+                const linkElement = document.createElement('a');
+                linkElement.href = `product-detail.html?productId=${productData.productId}`;
+                linkElement.target = '_blank';
+                linkElement.textContent = 'Buy Now!';
+
+                // Append elements to the product container
+                productElement.appendChild(imgElement);
+                productElement.appendChild(titleElement);
+                productElement.appendChild(descriptionElement);
+                productElement.appendChild(linkElement); 
+
+                // Add an event listener to each product element
+                productElement.addEventListener('click', (event) => {
+                    event.preventDefault(); 
+                    window.location.href = linkElement.href; 
+                });
+
+                return productElement;
             }
-          });
+
+            // Fetch products and display them
+            db.ref('products').on('value', (snapshot) => {
+                const products = snapshot.val(); 
+
+                const productGrid = document.getElementById('productGrid');
+                productGrid.innerHTML = ''; // Clear previous products
+
+                if (products) { 
+                    for (const productId in products) {
+                        if (products.hasOwnProperty(productId)) {
+                            const productData = products[productId];
+                            productData.productId = productId; 
+                            productGrid.appendChild(createProductElement(productData)); 
+                        }
+                    }
+                } else {
+                    console.log('No products found in the database.');
+                }
+            });
+
 // ... (Your Firebase setup)
 function createBlogPostElement(postData) {
   const postElement = document.createElement('div');
@@ -191,6 +199,8 @@ hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('open');
   mobileNav.classList.toggle('show');
 });
+
+
 // ... (rest of your code)
           // ... (Similar code for blog posts)
         </script>
