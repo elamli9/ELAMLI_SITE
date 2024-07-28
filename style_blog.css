@@ -1,0 +1,234 @@
+/* style_blog.css */
+
+/* General Styling */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f8f8f8;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  background-color: #fff;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo img {
+  height: 3rem;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+nav li {
+  margin-right: 1rem;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  color: #F58220; /* Orange color */
+  padding: 0.75rem 1.25rem;
+  border-radius: 20px; 
+}
+
+nav a:hover {
+  color: #007bff; /* Blue color on hover */
+}
+
+/* Blog Post Detail Section */
+#blog-detail {
+  margin-bottom: 2rem; /* Space between blog post and suggested posts */
+}
+
+#postContent {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#postContent img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+#postContent h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+#postContent p {
+  margin-bottom: 1rem;
+}
+
+#postContent strong { /* Style for bold text */
+  font-weight: bold;
+}
+
+#postContent p strong { /* Style for bold text in paragraphs */
+  font-weight: bold;
+}
+
+/* Suggested Posts Section */
+#blog h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.blog-posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.blog-card {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+}
+
+.blog-card img {
+  width: 100%;
+  height: 150px; /* Adjust as needed */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.blog-card h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.blog-card a {
+  color: #F58220;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.blog-card a:hover {
+  color: #007bff;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Mobile-Friendly Styles */
+@media (max-width: 768px) {
+  #blog-detail {
+    margin-bottom: 1rem; /* Adjust spacing on mobile */
+  }
+
+  .blog-posts {
+    grid-template-columns: 1fr; /* Single column layout on mobile */
+  }
+
+  #postContent img {
+    margin-bottom: 2rem; /* More spacing for the image on mobile */
+  }
+
+  #postContent h3 {
+    font-size: 1.8rem; /* Smaller heading size on mobile */
+  }
+
+  #postContent p {
+    font-size: 1rem; /* Smaller paragraph size on mobile */
+  }
+
+  #postContent p strong { /* Style for bold text in paragraphs */
+    font-weight: bold;
+  }
+
+  footer {
+    margin-top: 1rem;
+  }
+}
+/* Add these styles for the hamburger menu */
+#hamburger {
+  display: none;
+}
+
+#hamburger span {
+  display: block;
+  width: 30px;
+  height: 4px;
+  background-color: #333;
+  margin: 5px 0;
+  transition: all 0.3s ease;
+}
+
+/* Styles for the hamburger menu when open */
+#hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+#hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+#hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile-Specific Styles (Make sure to include this in your style.css) */
+@media (max-width: 768px) {
+  #hamburger {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #mobile-nav {
+    display: none;
+  }
+
+  nav ul.show {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  nav li {
+    margin-bottom: 1rem;
+    margin-right: 0;
+  }
+}

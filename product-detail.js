@@ -42,3 +42,24 @@ function displayProductDetails(productData) {
     document.getElementById('product-description').textContent = productData.description;
     document.getElementById('product-link').href = productData.affiliate_link;
 }
+
+// ... (Your existing Firebase setup, product fetching, and other code) ...
+
+// Get the hamburger menu and mobile navigation elements
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.querySelector('nav ul'); 
+
+// Event listener for the hamburger menu
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('show'); 
+});
+
+// Close the dialog when clicking outside of it
+mobileNav.addEventListener('click', (event) => {
+    if (event.target === mobileNav) {
+        hamburger.classList.remove('open'); // Close the hamburger
+        mobileNav.classList.remove('show'); // Close the dialog
+    }
+});
+// ... (Rest of your JavaScript) ...

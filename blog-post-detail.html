@@ -23,28 +23,21 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script> 
 </head>
 <body>
-  <header class="bg-white shadow-md">
-    <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-      <div class="logo">
-        <a href="index.html"><img src="logo.png" alt="Your Logo" class="h-8"></a>
-      </div>
-      <div class="flex items-center">
-        <h1 class="text-lg font-bold"><span class="text-orange-500">E-comme Blog</span> Website</h1>
-        <button id="hamburger" class="block md:hidden">
-          <span class="w-6 h-1 bg-gray-800 inline-block mb-1"></span>
-          <span class="w-6 h-1 bg-gray-800 inline-block mb-1"></span>
-          <span class="w-6 h-1 bg-gray-800 inline-block"></span>
+   <header>
+        <a href="index.html" class="logo"> <img src="logo.png" alt="Your Logo"></a>
+        <nav id="mobile-nav" class="hidden md:flex">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="aboutus.html">About</a></li>
+                <li><a href="contactus.html">Contact</a></li>
+            </ul>
+        </nav>
+        <button id="hamburger" class="md:hidden">
+            <span></span>
+            <span></span>
+            <span></span>
         </button>
-      </div>
-      <nav id="mobile-nav" class="hidden md:flex flex-col md:flex-row space-x-4 md:space-x-8">
-        <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0">
-          <li><a href="index.html" class="px-3 py-2 rounded-md text-gray-800 hover:bg-gray-200">Home</a></li>
-          <li><a href="aboutus.html" class="px-3 py-2 rounded-md text-gray-800 hover:bg-gray-200">About</a></li>
-          <li><a href="contactus.html" class="px-3 py-2 rounded-md text-gray-800 hover:bg-gray-200">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    </header>
 
   <main class="container mx-auto px-4 py-8">
     <section id="blog-detail" class="mb-8">
@@ -89,10 +82,15 @@
 
         if (postData) {
           const postContent = document.getElementById('postContent');
+
+          // Format the content from the database
+          const formattedContent = postData.content.replace(/\*([^*]+)\*/g, '<strong>$1</strong>') // Bold *text*
+                                               .replace(/(\d+)\./g, '<p><strong>$1.</strong></p>'); // Numbered list
+
           postContent.innerHTML = `
             <img src="${postData.image}" alt="${postData.title}" class="blog-card-img rounded-lg w-full mb-4">
             <h3 class="text-xl font-bold mb-2">${postData.title}</h3>
-            <p>${postData.content}</p>
+            ${formattedContent}
           `;
         } else {
           console.error('Blog post not found.');
@@ -149,15 +147,18 @@
     // Hamburger menu functionality
     const hamburger = document.getElementById('hamburger');
     const mobileNav = document.getElementById('mobile-nav');
+    const mobileMenu = document.getElementById('mobile-menu');
 
     hamburger.addEventListener('click', () => {
       hamburger.classList.toggle('open');
-      mobileNav.classList.toggle('show');
+      mobileMenu.classList.toggle('show');
     });
 
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      mobileNav.classList.toggle('show');
+    mobileMenu.addEventListener('click', (event) => {
+      if (event.target === mobileMenu) {
+        hamburger.classList.remove('open'); 
+        mobileMenu.classList.remove('show'); 
+      }
     });
   </script>
 </body>

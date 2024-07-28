@@ -93,11 +93,120 @@ nav a:hover {
   background-color: #0056b3; /* Blue button on hover */
 }
 
-/* Responsive Styling (for smaller screens) */
+/* Footer Styles */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Mobile-Friendly Styles */
 @media (max-width: 768px) {
   #product-detail {
     margin: 1rem auto;
     padding: 1rem;
     max-width: 90%;
+  }
+
+  nav ul {
+    flex-direction: column; /* Stack navigation items vertically */
+    align-items: flex-start;
+  }
+
+  nav li {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  #product-image {
+    margin-bottom: 2rem;
+  }
+
+  #product-link {
+    margin-bottom: 2rem; /* Add spacing between button and footer */
+  }
+
+  footer {
+    margin-top: 1rem; /* Adjust spacing on mobile */
+  }
+}
+
+/* Add these styles for the hamburger menu */
+#hamburger {
+  display: none;
+}
+
+#hamburger span {
+  display: block;
+  width: 30px;
+  height: 4px;
+  background-color: #333;
+  margin: 5px 0;
+  transition: all 0.3s ease;
+}
+
+/* Styles for the hamburger menu when open */
+#hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+#hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+#hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile-Specific Styles (Make sure to include this in your style.css) */
+@media (max-width: 768px) {
+  #hamburger {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #mobile-nav {
+    display: none;
+  }
+nav ul.show {
+    /* Basic dialog styles */
+    position: fixed; /* Stay in place */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    background-color: white; 
+    width: 80%; /* Adjust as needed */
+    max-width: 300px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 100; /* Ensure it's above other content */
+}
+
+/* ... other styles ... */
+#mobile-menu.show {
+    position: fixed; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    background-color: white; 
+    width: 80%; 
+    max-width: 300px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 100; 
+}
+
+/* ... other styles ... */
+
+  nav li {
+    margin-bottom: 1rem;
+    margin-right: 0;
   }
 }
