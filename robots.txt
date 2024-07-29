@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 Disallow: /cgi-bin/
-Sitemap: http://www.elamli.shop
+Sitemap: http://www.elamli.shop/sitemap.xml

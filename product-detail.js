@@ -34,7 +34,13 @@ if (productId) {
     document.getElementById('product-detail').innerHTML = '<div class="text-center text-red-500 font-bold mt-10">Product ID is missing!</div>';
     document.getElementById('product-detail').classList.add('justify-center', 'items-center', 'h-screen'); 
 }
-
+ function displayProductDetails(productData) {
+      document.getElementById('product-title').textContent = productData.name;
+      document.getElementById('product-img').src = productData.image;
+      document.getElementById('product-description').textContent = productData.description;
+      document.getElementById('product-link').href = productData.affiliate_link;
+      document.getElementById('product-price').textContent = `Price: ${productData.price}`; // Display the price
+    }
 function displayProductDetails(productData) {
     // Update HTML elements with product data
     document.getElementById('product-title').textContent = productData.name;
@@ -42,6 +48,7 @@ function displayProductDetails(productData) {
     document.getElementById('product-description').textContent = productData.description;
     document.getElementById('product-link').href = productData.affiliate_link;
 }
+
 
 // ... (Your existing Firebase setup, product fetching, and other code) ...
 
@@ -63,3 +70,18 @@ mobileNav.addEventListener('click', (event) => {
     }
 });
 // ... (Rest of your JavaScript) ...
+const animatedText = document.getElementById('animatedText');
+
+const textToAnimate = animatedText.textContent;
+animatedText.textContent = '';
+
+let i = 0;
+const typingSpeed = 50; // Adjust the typing speed in milliseconds
+const typeWriter = setInterval(() => {
+  animatedText.textContent += textToAnimate[i];
+  i++;
+
+  if (i === textToAnimate.length) {
+    clearInterval(typeWriter);
+  }
+}, typingSpeed);

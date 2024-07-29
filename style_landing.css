@@ -5,6 +5,7 @@ body {
   font-family: 'Roboto', sans-serif;
   background-color: #f8f8f8;
   color: #333;
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
 }
 
 /* Header */
@@ -14,6 +15,12 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed; /* Fix the header to the top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10; /* Ensure it's above other content */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
 }
 
 .logo img {
@@ -49,21 +56,26 @@ nav a:hover {
 #product-detail {
   padding: 2rem;
   max-width: 800px;
-  margin: 2rem auto;
+  margin: 8rem auto 2rem; /* Add more space at the top */
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+  position: relative; /* To position the text animation */
 }
 
 #product-title {
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 1rem;
+  text-align: center;
+  animation: slideInLeft 0.8s ease-in-out; /* Add a slide-in animation */
 }
 
 #product-image {
   text-align: center;
   margin-bottom: 1rem;
+  overflow: hidden;
+  position: relative; /* To position the gradient overlay */
 }
 
 #product-img {
@@ -71,11 +83,31 @@ nav a:hover {
   height: auto;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out; /* Add a zoom effect */
+}
+
+#product-img:hover {
+  transform: scale(1.05); /* Zoom on hover */
+}
+
+.gradient-overlay { /* Add a gradient overlay to the image */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom, 
+    rgba(0, 0, 0, 0.4), 
+    rgba(0, 0, 0, 0)
+  );
+  z-index: 1; /* Ensure it's above the image */
 }
 
 #product-description {
   line-height: 1.6;
   margin-bottom: 1rem;
+  animation: fadeInUp 0.8s ease-in-out; /* Add a fade-in animation */
 }
 
 #product-link {
@@ -86,11 +118,64 @@ nav a:hover {
   padding: 1rem 2rem;
   border-radius: 20px;
   text-decoration: none;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease; /* Add hover effects */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a shadow */
 }
 
 #product-link:hover {
   background-color: #0056b3; /* Blue button on hover */
+  transform: translateY(-2px); /* Slight lift on hover */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+/* Animations */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Text Writing Animation (use with JavaScript to control) */
+@keyframes typeWriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Responsive Styling (for smaller screens) */
+@media (max-width: 768px) {
+  #product-detail {
+    margin: 4rem auto 2rem; 
+    padding: 1rem;
+    max-width: 90%;
+  }
+
+  #product-title {
+    font-size: 2rem; /* Smaller heading size */
+  }
+
+  #product-description {
+    font-size: 0.9rem; /* Smaller text size */
+  }
 }
 
 /* Footer Styles */
@@ -100,6 +185,11 @@ footer {
   padding: 1rem;
   text-align: center;
   margin-top: 2rem;
+  position: relative; /* To position the footer */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
 }
 
 /* Mobile-Friendly Styles */
@@ -111,7 +201,7 @@ footer {
   }
 
   nav ul {
-    flex-direction: column; /* Stack navigation items vertically */
+    flex-direction: column; 
     align-items: flex-start;
   }
 
@@ -125,11 +215,11 @@ footer {
   }
 
   #product-link {
-    margin-bottom: 2rem; /* Add spacing between button and footer */
+    margin-bottom: 2rem; 
   }
 
   footer {
-    margin-top: 1rem; /* Adjust spacing on mobile */
+    margin-top: 1rem;
   }
 }
 
@@ -175,35 +265,19 @@ footer {
   #mobile-nav {
     display: none;
   }
-nav ul.show {
-    /* Basic dialog styles */
-    position: fixed; /* Stay in place */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); 
-    background-color: white; 
-    width: 80%; /* Adjust as needed */
-    max-width: 300px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 100; /* Ensure it's above other content */
-}
 
-/* ... other styles ... */
-#mobile-menu.show {
-    position: fixed; 
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); 
-    background-color: white; 
-    width: 80%; 
-    max-width: 300px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 100; 
-}
-
-/* ... other styles ... */
+  nav ul.show {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
 
   nav li {
     margin-bottom: 1rem;
