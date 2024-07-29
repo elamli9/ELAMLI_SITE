@@ -41,15 +41,21 @@
      </button>
  </header>
  
-    <main>
+     <main>
         <section id="product-detail" class="container px-4 py-8">
             <h1 id="product-title" class="text-3xl font-bold mb-4"></h1>
             <div id="product-image" class="mb-4">
                 <img src="" alt="" id="product-img">
             </div>
             <div id="product-description" class="mb-4"></div>
-             <div id="product-price" class="text-lg font-bold mb-2"></div> <div id="product-description" class="mb-4"></div>
+            <div id="product-price" class="text-lg font-bold mb-2"></div> 
             <a href="" id="product-link" class="bg-orange-500 text-white px-6 py-3 rounded-md hover:bg-orange-600">Buy Now</a>
+        </section>
+
+        <!-- Separate section for suggestions -->
+        <section id="product-suggestions" class="container px-4 py-8 mt-8">
+            <h2 class="text-2xl font-bold mb-4">You Might Also Like</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="suggestion-items"></div>
         </section>
     </main>
 
@@ -58,5 +64,7 @@
     </footer>
     
     <script src="product-detail.js"></script>
+
+
 </body>
 </html>

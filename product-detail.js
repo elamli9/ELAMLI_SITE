@@ -23,6 +23,10 @@ if (productId) {
         const productData = snapshot.val();
         if (productData) {
             displayProductDetails(productData);
+            // Get random product suggestions (replace with your logic)
+            getSuggestions(productId).then((suggestions) => {
+                displaySuggestions(suggestions);
+            });
         } else {
             // Product not found - display an error
             document.getElementById('product-detail').innerHTML = '<div class="text-center text-red-500 font-bold mt-10">Product not found!</div>';
@@ -34,21 +38,87 @@ if (productId) {
     document.getElementById('product-detail').innerHTML = '<div class="text-center text-red-500 font-bold mt-10">Product ID is missing!</div>';
     document.getElementById('product-detail').classList.add('justify-center', 'items-center', 'h-screen'); 
 }
- function displayProductDetails(productData) {
-      document.getElementById('product-title').textContent = productData.name;
-      document.getElementById('product-img').src = productData.image;
-      document.getElementById('product-description').textContent = productData.description;
-      document.getElementById('product-link').href = productData.affiliate_link;
-      document.getElementById('product-price').textContent = `Price: ${productData.price}`; // Display the price
-    }
+
+// Fetch product details
 function displayProductDetails(productData) {
     // Update HTML elements with product data
     document.getElementById('product-title').textContent = productData.name;
     document.getElementById('product-img').src = productData.image;
     document.getElementById('product-description').textContent = productData.description;
     document.getElementById('product-link').href = productData.affiliate_link;
+    document.getElementById('product-price').textContent = `Price: ${productData.price}`; // Display the price
 }
 
+// Placeholder function to get suggestions (replace with your actual logic)
+async function getSuggestions(currentProductId) {
+  // Example: Get 5 to 7 random products excluding the current product
+  const allProductsRef = db.ref('products');
+  const allProductsSnapshot = await allProductsRef.once('value');
+  const allProducts = allProductsSnapshot.val();
+  const suggestions = [];
+
+  // Get a random number between 5 and 7
+  const numSuggestions = Math.floor(Math.random() * 3) + 5;
+
+  // Create a random sample of 5 to 7
+  const randomKeys = getRandomArrayElements(Object.keys(allProducts), numSuggestions);
+
+  for (const key of randomKeys) {
+    if (key !== currentProductId) {
+      suggestions.push(allProducts[key]);
+    }
+  }
+
+  return suggestions;
+}
+
+// Helper function to get random elements from an array
+function getRandomArrayElements(arr, num) {
+  const shuffled = arr.sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, num);
+}
+
+// Display product suggestions
+function displaySuggestions(suggestions) {
+    const suggestionItems = document.getElementById('suggestion-items');
+    suggestionItems.innerHTML = ''; // Clear existing items
+
+    for (const suggestion of suggestions) {
+        const suggestionItem = document.createElement('div');
+        suggestionItem.classList.add('bg-white', 'rounded-md', 'overflow-hidden', 'shadow-md', 'p-4');
+
+        const suggestionImg = document.createElement('img');
+        suggestionImg.src = suggestion.image;
+        suggestionImg.alt = suggestion.name;
+        suggestionImg.classList.add('w-full', 'h-40', 'object-cover');
+
+        const suggestionTitle = document.createElement('h3');
+        suggestionTitle.textContent = suggestion.name;
+        suggestionTitle.classList.add('text-lg', 'font-bold', 'mt-2');
+
+        const suggestionLink = document.createElement('a');
+        // CORRECTED: Use suggestion.id
+        suggestionLink.href = `product-detail.html?productId=${suggestion.id}`; 
+        suggestionLink.textContent = 'Learn More';
+        suggestionLink.classList.add('bg-orange-500', 'text-white', 'px-4', 'py-2', 'rounded-md', 'mt-2', 'block', 'hover:bg-orange-600');
+
+        suggestionItem.appendChild(suggestionImg);
+        suggestionItem.appendChild(suggestionTitle);
+        suggestionItem.appendChild(suggestionLink);
+
+        suggestionItems.appendChild(suggestionItem);
+    }
+}
+
+// Event listener for suggestion item clicks
+const suggestionItems = document.getElementById('suggestion-items');
+suggestionItems.addEventListener('click', (event) => {
+    if (event.target.tagName === 'A') {
+        const productId = event.target.href.split('?productId=')[1];
+        window.location.href = `product-detail.html?productId=${productId}`; 
+         linkElement.href = `product-detail.html?productId=${productData.productId}`;
+    }
+});
 
 // ... (Your existing Firebase setup, product fetching, and other code) ...
 
