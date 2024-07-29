@@ -65,7 +65,7 @@ async function getSuggestions(currentProductId) {
 
   for (const key of randomKeys) {
     if (key !== currentProductId) {
-      suggestions.push(allProducts[key]);
+      suggestions.push({ id: key, ...allProducts[key] }); // Include the product ID in the suggestion object
     }
   }
 
@@ -97,10 +97,12 @@ function displaySuggestions(suggestions) {
         suggestionTitle.classList.add('text-lg', 'font-bold', 'mt-2');
 
         const suggestionLink = document.createElement('a');
-        // CORRECTED: Use suggestion.id
-        suggestionLink.href = `product-detail.html?productId=${suggestion.id}`; 
+        suggestionLink.href = `product-detail.html?productId=${suggestion.id}`; // CORRECTED: Use suggestion.id
         suggestionLink.textContent = 'Learn More';
         suggestionLink.classList.add('bg-orange-500', 'text-white', 'px-4', 'py-2', 'rounded-md', 'mt-2', 'block', 'hover:bg-orange-600');
+
+        // Add data-product-id attribute to the link
+        suggestionLink.setAttribute('data-product-id', suggestion.id); 
 
         suggestionItem.appendChild(suggestionImg);
         suggestionItem.appendChild(suggestionTitle);
@@ -114,15 +116,13 @@ function displaySuggestions(suggestions) {
 const suggestionItems = document.getElementById('suggestion-items');
 suggestionItems.addEventListener('click', (event) => {
     if (event.target.tagName === 'A') {
-        const productId = event.target.href.split('?productId=')[1];
+        event.preventDefault();
+        const productId = event.target.getAttribute('data-product-id');
         window.location.href = `product-detail.html?productId=${productId}`; 
-         linkElement.href = `product-detail.html?productId=${productData.productId}`;
     }
 });
 
-// ... (Your existing Firebase setup, product fetching, and other code) ...
-
-// Get the hamburger menu and mobile navigation elements
+// Hamburger menu toggle
 const hamburger = document.getElementById('hamburger');
 const mobileNav = document.querySelector('nav ul'); 
 
@@ -139,9 +139,9 @@ mobileNav.addEventListener('click', (event) => {
         mobileNav.classList.remove('show'); // Close the dialog
     }
 });
-// ... (Rest of your JavaScript) ...
-const animatedText = document.getElementById('animatedText');
 
+// Typing animation
+const animatedText = document.getElementById('animatedText');
 const textToAnimate = animatedText.textContent;
 animatedText.textContent = '';
 
