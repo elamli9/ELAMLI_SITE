@@ -111,10 +111,27 @@
                 productElement.appendChild(descriptionElement);
                 productElement.appendChild(linkElement); 
 
-                // Add an event listener to each product element
+                // Make the product card a clickable button
                 productElement.addEventListener('click', (event) => {
                     event.preventDefault(); 
                     window.location.href = linkElement.href; 
+                });
+
+                // Hover effects (Switch button and text colors)
+                productElement.addEventListener('mouseover', () => {
+                    productElement.classList.add('hover');
+                    linkElement.style.backgroundColor = '#fff'; // White button
+                    linkElement.style.color = '#f58220'; // Orange text
+                    titleElement.style.color = '#fff'; // White title
+                    descriptionElement.style.color = '#f58220'; // Orange description
+                });
+
+                productElement.addEventListener('mouseout', () => {
+                    productElement.classList.remove('hover');
+                    linkElement.style.backgroundColor = '#f58220'; // Orange button
+                    linkElement.style.color = '#fff'; // White text
+                    titleElement.style.color = '#000'; // Black title
+                    descriptionElement.style.color = '#000'; // Black description
                 });
 
                 return productElement;

@@ -1,9 +1,48 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* ... your existing CSS ... */
 
+/* Product Card as Button */
+.product {
+  /* ... (Your existing product styles) ... */
+  cursor: pointer; /* Make the card clickable */
+  transition: background-color 0.2s ease, box-shadow 0.2s ease; /* Smooth transitions */
+}
+
+.product:hover {
+  background-color: #f58220; /* Orange background on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+}
+
+.product.hover h3 {
+  color: #fff; /* White title on hover */
+}
+
+.product.hover p,
+.product.hover a {
+  color: #f58220; /* Orange text on hover */
+}
+
+.product {
+  /* Your existing styles... */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transitions */
+}
+
+.product:hover {
+  /* Your existing hover styles... */
+  transform: translateY(-5px); /* Lift the card slightly */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Increase shadow */
+}
+
+.product:hover {
+  /* Your existing hover styles... */
+  animation: bounce 0.5s ease-in-out; /* Add a bounce animation */
+}
+
+@keyframes bounce {
+  0% { transform: translateY(-5px); } /* Starting position */
+  50% { transform: translateY(-10px); } /* Bounce down */
+  100% { transform: translateY(-5px); } /* Back to starting position */
+}
 /* ... rest of your CSS ... */
-
 
 /* General Styling */
 body {
