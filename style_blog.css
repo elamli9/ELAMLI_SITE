@@ -242,7 +242,10 @@ footer {
   margin-bottom: 1rem;
 }
 
-#postContent p {
-  margin-bottom: 1rem;
-  font-size: 1.1rem; /* حجم خط أكبر */
+#postContent img {
+    max-width: 100%;
+    height: auto; /* هذه الخاصية تضمن عدم اقتصاص الصورة */
+    object-fit: contain; /* ستجعل الصورة تظهر بالكامل دون قص */
+    border-radius: 8px;
+    margin-bottom: 1rem;
 }
