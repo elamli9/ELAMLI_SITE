@@ -151,21 +151,7 @@ footer {
     grid-template-columns: 1fr; /* Single column layout on mobile */
   }
 
-  #postContent img {
-    margin-bottom: 2rem; /* More spacing for the image on mobile */
-  }
-
-  #postContent h3 {
-    font-size: 1.8rem; /* Smaller heading size on mobile */
-  }
-
-  #postContent p {
-    font-size: 1rem; /* Smaller paragraph size on mobile */
-  }
-
-  #postContent p strong { /* Style for bold text in paragraphs */
-    font-weight: bold;
-  }
+  
 
   footer {
     margin-top: 1rem;
@@ -231,4 +217,32 @@ footer {
     margin-bottom: 1rem;
     margin-right: 0;
   }
+}
+/* Blog Post Detail Section */
+#postContent {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 800px; /* تحديد عرض أقصى */
+  margin: auto; /* محاذاة المركز */
+}
+
+#postContent img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+/* تحسين الفقرات */
+#postContent h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+#postContent p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem; /* حجم خط أكبر */
 }
