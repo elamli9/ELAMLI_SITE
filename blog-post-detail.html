@@ -2,25 +2,23 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-T2RKY772M4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-T2RKY772M4');
-</script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7974930429316967"
-     crossorigin="anonymous"></script>
-     <meta name="google-adsense-account" content="ca-pub-7974930429316967">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2RKY772M4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-T2RKY772M4');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7974930429316967" crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="ca-pub-7974930429316967">
   <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-<link rel="icon" href="favicon.png" type="image/x-icon">
+  <link rel="icon" href="favicon.png" type="image/x-icon">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog Post Detail</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script> 
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 </head>
 <body>
    <header>
@@ -88,9 +86,9 @@
                                                .replace(/(\d+)\./g, '<p><strong>$1.</strong></p>'); // Numbered list
 
           postContent.innerHTML = `
-            <img src="${postData.image}" alt="${postData.title}" class="blog-card-img rounded-lg w-full mb-4">
+            <img src="${postData.image}" alt="${postData.title}" class="blog-card-img rounded-lg w-full mb-4" style="object-fit: cover; height: auto;">
             <h3 class="text-xl font-bold mb-2">${postData.title}</h3>
-            ${formattedContent}
+            <p>${formattedContent}</p>
           `;
         } else {
           console.error('Blog post not found.');
@@ -127,6 +125,7 @@
       imgElement.src = postData.image;
       imgElement.alt = postData.title;
       imgElement.classList.add('rounded-lg', 'w-full', 'mb-4');
+      imgElement.style = "object-fit: cover; height: auto;";
 
       const titleElement = document.createElement('h3');
       titleElement.textContent = postData.title;
@@ -135,6 +134,7 @@
       const linkElement = document.createElement('a');
       linkElement.href = "blog-post-detail.html?postId=" + postData.postId;
       linkElement.textContent = 'Read More';
+      linkElement.target = "_blank"; // Open link in a new tab
       linkElement.classList.add('text-orange-500', 'hover:underline');
 
       postElement.appendChild(imgElement);
