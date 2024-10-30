@@ -7,52 +7,52 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-T2RKY772M4');
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7974930429316967"
        crossorigin="anonymous"></script>
-       <meta name="google-adsense-account" content="ca-pub-7974930429316967">
+    <meta name="google-adsense-account" content="ca-pub-7974930429316967">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
     <link rel="icon" href="favicon.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details - ELAMLI SHOP</title>
-    <meta name="description" content="Discover the best products and services for your needs.  Get recommendations based on research and experience. Shop now and learn more about Home and finance, health,travel, e-comme." />
+    <meta name="description" content="Discover the best products and services for your needs. Get recommendations based on research and experience. Shop now and learn more about Home and finance, health, travel, e-commerce." />
     <link rel="stylesheet" href="style_landing.css">
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script> 
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 </head>
 <body>
     <header>
-     <a href="index.html" class="logo"> <img src="logo.png" alt="Your Logo"></a>
-     <nav id="mobile-nav" class="hidden md:flex">
-         <ul>
-             <li><a href="index.html">Home</a></li>
-             <li><a href="aboutus.html">About</a></li>
-             <li><a href="contactus.html">Contact</a></li>
-         </ul>
-     </nav>
-     <button id="hamburger" class="md:hidden">
-         <span></span>
-         <span></span>
-         <span></span>
-     </button>
- </header>
+        <a href="index.html" class="logo"><img src="logo.png" alt="Your Logo"></a>
+        <nav id="mobile-nav" class="hidden md:flex">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="aboutus.html">About</a></li>
+                <li><a href="contactus.html">Contact</a></li>
+            </ul>
+        </nav>
+        <button id="hamburger" class="md:hidden">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
  
-     <main>
-        <section id="product-detail" class="container px-4 py-8">
-            <h1 id="product-title" class="text-3xl font-bold mb-4"></h1>
+    <main>
+        <section id="product-detail" class="container px-4 py-8" itemscope itemtype="http://schema.org/Product">
+            <h1 id="product-title" class="text-3xl font-bold mb-4" itemprop="name"></h1>
             <div id="product-image" class="mb-4">
-                <img src="" alt="" id="product-img">
+                <img src="" alt="" id="product-img" itemprop="image">
             </div>
-            <div id="product-description" class="mb-4"></div>
-            <div id="product-price" class="text-lg font-bold mb-2"></div> 
-            <a href="" id="product-link" class="bg-orange-500 text-white px-6 py-3 rounded-md hover:bg-orange-600">⇱ Amazon.com </a>
+            <div id="product-description" class="mb-4" itemprop="description"></div>
+            <div id="product-price" class="text-lg font-bold mb-2" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="0.00"></span>
+            </div>
+            <a href="" id="product-link" class="bg-orange-500 text-white px-6 py-3 rounded-md hover:bg-orange-600" itemprop="url">⇱ Amazon.com </a>
         </section>
 
-        <!-- Separate section for suggestions -->
         <section id="product-suggestions" class="container px-4 py-8 mt-8">
             <h2 class="text-2xl font-bold mb-4">You Might Also Like</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="suggestion-items"></div>
@@ -64,7 +64,5 @@
     </footer>
     
     <script src="product-detail.js"></script>
-
-
 </body>
 </html>
