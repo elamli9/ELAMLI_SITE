@@ -1,231 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-T2RKY772M4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Post Detail</title>
 
-  gtag('config', 'G-T2RKY772M4');
-</script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7974930429316967"
-     crossorigin="anonymous"></script>
-     <meta name="google-adsense-account" content="ca-pub-7974930429316967">
-     <meta name="yandex-verification" content="4191470cb60891b7" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2RKY772M4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-T2RKY772M4');
+  </script>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7974930429316967" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="style.css">
   <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-<link rel="icon" href="favicon.png" type="image/x-icon">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ELAMLI SHOP - Hot products in 2024 is here!</title>
-    <meta name="description" content="Discover the best products and services for your needs.  Get recommendations based on research and experience. Shop now and learn more about Home and finance, health,travel, e-comme." />
-    <link rel="stylesheet" href="style.css">
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script> 
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script> 
 </head>
 <body>
-    <header>
-        <a href="index.html" class="logo"> <img src="logo.png" alt="Your Logo"></a>
-        <nav id="mobile-nav" class="hidden md:flex">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="aboutus.html">About</a></li>
-                <li><a href="contactus.html">Contact</a></li>
-            </ul>
-        </nav>
-        <button id="hamburger" class="md:hidden">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </header>
+  <header>
+    <a href="index.html" class="logo">
+      <img src="logo.png" alt="Your Logo">
+    </a>
+    <nav id="mobile-nav" class="hidden md:flex">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="aboutus.html">About</a></li>
+        <li><a href="contactus.html">Contact</a></li>
+      </ul>
+    </nav>
+    <button id="hamburger" class="md:hidden">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
 
-    <main>
-       
+  <main class="container mx-auto px-4 py-8">
+    <section id="blog-detail" class="mb-8">
+      <div id="postContent" class="blog-card rounded-lg shadow-md p-4">
+        <!-- Blog post content will load here -->
+      </div>
+    </section>
 
-        <section id="hero" class="relative flex items-center justify-center bg-orange-500  h-screen"> 
-          <div class="container px-4">
-            <a href="Welcome To ELAMLI SHOP"></a>
-          </div>
-      </section>
+    <section id="blog" class="mb-8">
+      <h2 class="text-2xl font-bold mb-4">
+        <span class="text-orange-500">You Might Also Like</span>
+      </h2>
+      <div class="blog-posts grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="suggestedPosts">
+        <!-- Suggested posts will load here -->
+      </div>
+    </section>
+  </main>
 
-        <section id="featured-products">
-          <h2>Featured Products</h2>
-          <div class="product-grid" id="productGrid">
-              <div id="product-loading">Loading Products...</div> 
-          </div>
-      </section>
+  <footer class="bg-gray-800 text-white py-4 text-center">
+    <p>© 2023 ELAMLI. All rights reserved.</p>
+  </footer>
 
-      <section id="blog">
-          <h2>Latest Blog Posts</h2>
-          <div class="blog-posts" id="blogPosts">
-              <div id="blog-loading">Loading Blog Posts...</div> 
-          </div>
-      </section>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
-        
+  <script>
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyC3ENJExu01i7yODhQQO5k6-BuZ13737T4",
+      authDomain: "elamli-shop.firebaseapp.com",
+      databaseURL: "https://elamli-shop-default-rtdb.firebaseio.com",
+      projectId: "elamli-shop",
+      storageBucket: "elamli-shop.appspot.com",
+      messagingSenderId: "740777134694",
+      appId: "1:740777134694:web:6064048d820d18540afba7",
+      measurementId: "G-MNT2CS1QSD"
+    };
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
 
-        <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('postId');
 
-         const firebaseConfig = {
-                // Replace these placeholders with your Firebase project settings
-                apiKey: "AIzaSyC3ENJExu01i7yODhQQO5k6-BuZ13737T4",
-                authDomain: "elamli-shop.firebaseapp.com",
-                databaseURL: "https://elamli-shop-default-rtdb.firebaseio.com",
-                projectId: "elamli-shop",
-                storageBucket: "elamli-shop.appspot.com",
-                messagingSenderId: "740777134694",
-                appId: "1:740777134694:web:6064048d820d18540afba7",
-                measurementId: "G-MNT2CS1QSD"
-            };
+    if (postId) {
+      db.ref(`blog_posts/${postId}`).on('value', (snapshot) => {
+        const postData = snapshot.val();
 
-            // Initialize Firebase
-            const app = firebase.initializeApp(firebaseConfig);
-            const db = firebase.database();
+        if (postData) {
+          const postContent = document.getElementById('postContent');
 
-            // Function to create a product element 
-            function createProductElement(productData) {
-                const productElement = document.createElement('div');
-                productElement.classList.add('product');
-                productElement.id = `product-${productData.productId}`;
-
-                const imgElement = document.createElement('img');
-                imgElement.src = productData.image; 
-                imgElement.alt = productData.name;
-
-                const titleElement = document.createElement('h3');
-                titleElement.textContent = productData.name;
-
-                const descriptionElement = document.createElement('p');
-                descriptionElement.textContent = productData.description;
-
-                const linkElement = document.createElement('a');
-                linkElement.href = `product-detail.html?productId=${productData.productId}`;
-                linkElement.target = '_blank';
-                linkElement.textContent = 'Buy Now!';
-
-                // Append elements to the product container
-                productElement.appendChild(imgElement);
-                productElement.appendChild(titleElement);
-                productElement.appendChild(descriptionElement);
-                productElement.appendChild(linkElement); 
-
-                // Make the product card a clickable button
-                productElement.addEventListener('click', (event) => {
-                    event.preventDefault(); 
-                    window.location.href = linkElement.href; 
-                });
-
-                // Hover effects (Switch button and text colors)
-                productElement.addEventListener('mouseover', () => {
-                    productElement.classList.add('hover');
-                    linkElement.style.backgroundColor = '#fff'; // White button
-                    linkElement.style.color = '#f58220'; // Orange text
-                    titleElement.style.color = '#fff'; // White title
-                    descriptionElement.style.color = '#f58220'; // Orange description
-                });
-
-                productElement.addEventListener('mouseout', () => {
-                    productElement.classList.remove('hover');
-                    linkElement.style.backgroundColor = '#f58220'; // Orange button
-                    linkElement.style.color = '#fff'; // White text
-                    titleElement.style.color = '#000'; // Black title
-                    descriptionElement.style.color = '#000'; // Black description
-                });
-
-                return productElement;
-            }
-
-            // Fetch products and display them
-            db.ref('products').on('value', (snapshot) => {
-                const products = snapshot.val(); 
-
-                const productGrid = document.getElementById('productGrid');
-                productGrid.innerHTML = ''; // Clear previous products
-
-                if (products) { 
-                    for (const productId in products) {
-                        if (products.hasOwnProperty(productId)) {
-                            const productData = products[productId];
-                            productData.productId = productId; 
-                            productGrid.appendChild(createProductElement(productData)); 
-                        }
-                    }
-                } else {
-                    console.log('No products found in the database.');
-                }
-            });
-
-// ... (Your Firebase setup)
-function createBlogPostElement(postData) {
-  const postElement = document.createElement('div');
-  postElement.classList.add('post');
-
-  const titleElement = document.createElement('h3');
-  titleElement.textContent = postData.title;
-
-  const summaryElement = document.createElement('p');
-  summaryElement.textContent = postData.summary;
-
-  const imgElement = document.createElement('img');
-  imgElement.src = postData.image; // Make sure the image path is correct
-  imgElement.alt = postData.title;
-
-  const linkElement = document.createElement('a');
-  linkElement.href = "blog-post-detail.html?postId=" + postData.postId; // Add a link to blog post detail page
-  linkElement.textContent = 'Read More';
-
-  postElement.appendChild(imgElement);
-  postElement.appendChild(titleElement);
-  postElement.appendChild(summaryElement);
-  postElement.appendChild(linkElement);
-
-  return postElement;
-}
-
-db.ref('blog_posts').on('value', (snapshot) => {
-  const posts = snapshot.val(); 
-
-  const blogPosts = document.getElementById('blogPosts');
-  blogPosts.innerHTML = ''; // Clear previous posts
-
-  if (posts) { 
-    // If there are blog posts in the database
-    for (const postId in posts) {
-      if (posts.hasOwnProperty(postId)) {
-        const postData = posts[postId];
-        postData.postId = postId; // Add postId to postData
-        blogPosts.appendChild(createBlogPostElement(postData));
-      }
+          postContent.innerHTML = `
+            <img src="${postData.image}" alt="${postData.title}" class="blog-card-img rounded-lg w-full mb-4">
+            <h3 class="text-xl font-bold mb-2">${postData.title}</h3>
+            <div>${formatContent(postData.content)}</div>
+          `;
+        } else {
+          console.error('Blog post not found.');
+        }
+      });
+    } else {
+      console.error('postId is missing from the URL.');
     }
-  } else {
-    // No blog posts found
-    console.log('No blog posts found in the database.');
-    // You might want to display a message to the user here
-  }
-});
-// Get the hamburger menu and mobile navigation elements
-// Get the hamburger menu and mobile navigation elements
-const hamburger = document.getElementById('hamburger');
-const mobileNav = document.getElementById('mobile-nav');
 
-// Event listener for the hamburger menu
-hamburger.addEventListener('click', () => {
-  // Toggle the open class on the hamburger and mobile navigation
-  hamburger.classList.toggle('open');
-  mobileNav.classList.toggle('show');
-});
+    // Function to format blog content with HTML tags
+    function formatContent(content) {
+      return content
+        .replace(/\*([^*]+)\*/g, '<strong>$1</strong>')  // Bold text
+        .replace(/_(.+?)_/g, '<em>$1</em>')  // Italics
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')  // Links
+        .replace(/\n/g, '<br>');  // Line breaks
+    }
 
+    // Load suggested posts
+    db.ref('blog_posts').on('value', (snapshot) => {
+      const posts = snapshot.val();
+      const suggestedPosts = document.getElementById('suggestedPosts');
+      suggestedPosts.innerHTML = '';  // Clear previous posts
 
-// ... (rest of your code)
-          // ... (Similar code for blog posts)
-        </script>
-    </main>
+      if (posts) {
+        for (const id in posts) {
+          if (id !== postId) {
+            const post = posts[id];
+            suggestedPosts.appendChild(createBlogPostElement(post, id));
+          }
+        }
+      } else {
+        console.log('No posts found.');
+      }
+    });
 
-    <footer>
-        <p>© 2023 ELAMLI. All rights reserved.</p>
-    </footer>
+    function createBlogPostElement(postData, id) {
+      const postElement = document.createElement('div');
+      postElement.classList.add('blog-card', 'rounded-lg', 'shadow-md', 'p-4');
+
+      postElement.innerHTML = `
+        <img src="${postData.image}" alt="${postData.title}" class="rounded-lg w-full mb-4">
+        <h3 class="text-xl font-bold mb-2">${postData.title}</h3>
+        <a href="blog-post-detail.html?postId=${id}" class="text-orange-500 hover:underline">Read More</a>
+      `;
+
+      return postElement;
+    }
+
+    // Hamburger menu functionality
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileNav.classList.toggle('hidden');
+    });
+  </script>
 </body>
 </html>
